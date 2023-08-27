@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Product Manager</title>
+</head>
+<body>
+<div align="center">
+    <h1>Product List</h1>
+    <a href="/new">Create New Product</a>
+    <br/><br/>
+    <table border="1" cellpadding="10">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Is Delete</th>
+            <th>Created Date</th>
+            <th>Created By</th>
+            <th>Updated Date</th>
+            <th>Updated By</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="role : ${listRoles}">
+            <td th:text="${role.RoleId}">Product ID</td>
+            <td th:text="${role.RoleName}">RoleName</td>
+            <td th:text="${role.IsDeleted}">IsDeleted</td>
+            <td th:text="${role.CreatedDate}">CreatedDate</td>
+            <td th:text="${role.CreatedBy}">CreatedBy</td>
+            <td th:text="${role.UpdatedDate}">UpdatedDate</td>
+            <td th:text="${role.UpdatedBy}">UpdatedBy</td>
+            <td>
+                <a th:href="/@{'/edit/' + ${role.id}}">Edit</a>
+                &nbsp;&nbsp;&nbsp;
+                <a th:href="/@{'/delete/' + ${role.id}}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
