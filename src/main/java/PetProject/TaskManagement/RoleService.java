@@ -1,4 +1,6 @@
 package PetProject.TaskManagement;
+import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.List;
 import java.util.UUID;
 
@@ -12,12 +14,16 @@ public class RoleService {
     @Autowired
     private RoleRepository repo;
 
-    public List<Role> listAll() {
+    public List<Role> getAll() {
         return repo.findAll();
     }
 
-    public void save(Role role) {
-        repo.save(role);
+    public void save() {
+        UUID randomUUID = UUID.randomUUID();
+        UUID userId = UUID.fromString("00000000-0000-0000-0000-000000000000");
+        LocalDateTime dateTime = LocalDateTime.of(2023, Month.AUGUST, 31, 15, 30);
+        Role role1 = new Role(randomUUID, "Dat Admin",true,dateTime,userId,dateTime,userId);
+        repo.save(role1);
     }
 
     public Role get(UUID id) {
