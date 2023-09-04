@@ -1,4 +1,6 @@
-package PetProject.TaskManagement;
+package PetProject.TaskManagement.controller;
+import PetProject.TaskManagement.entity.Role;
+import PetProject.TaskManagement.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
