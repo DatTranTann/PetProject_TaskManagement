@@ -1,4 +1,4 @@
-package PetProject.TaskManagement;
+package PetProject.TaskManagement.entity;
 
 import jakarta.persistence.*;
 
@@ -23,15 +23,15 @@ public class Role {
     @Column(name = "updated_by")
     private UUID  UpdatedBy;
     public Role() {}
-    public Role(UUID Id, String RoleName, boolean IsDeleted, LocalDateTime CreatedDate, UUID CreatedBy, LocalDateTime UpdatedDate, UUID UpdatedBy)
+    public Role(UUID id, String roleName, boolean isDeleted, LocalDateTime createdDate, UUID createdBy, LocalDateTime updatedDate, UUID updatedBy)
     {
-        this.Id = Id;
-        this.RoleName = RoleName;
-        this.IsDeleted = IsDeleted;
-        this.CreatedDate = CreatedDate;
-        this.CreatedBy = CreatedBy;
-        this.UpdatedDate = UpdatedDate;
-        this.UpdatedBy = UpdatedBy;
+        this.Id = id;
+        this.RoleName = roleName;
+        this.IsDeleted = isDeleted;
+        this.CreatedDate = createdDate;
+        this.CreatedBy = createdBy;
+        this.UpdatedDate = updatedDate;
+        this.UpdatedBy = updatedBy;
     }
     public UUID getId() {
         return Id;

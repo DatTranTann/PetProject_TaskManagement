@@ -1,4 +1,5 @@
-package PetProject.TaskManagement;
+package PetProject.TaskManagement.repository;
+import PetProject.TaskManagement.entity.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
