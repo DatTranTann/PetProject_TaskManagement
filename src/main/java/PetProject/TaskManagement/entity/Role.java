@@ -1,10 +1,12 @@
 package PetProject.TaskManagement.entity;
-
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 @Entity
+@Getter @Setter
 @Table(name = "role")
 public class Role {
     @Id
@@ -33,12 +35,12 @@ public class Role {
         this.UpdatedDate = updatedDate;
         this.UpdatedBy = updatedBy;
     }
-    public UUID getId() {
-        return Id;
-    }
-
-    public String getRoleName() {
-        return RoleName;
-    }
+//    public UUID getId() {
+//        return Id;
+//    }
+//
+//    public String getRoleName() {
+//        return RoleName;
+//    }
 }
 

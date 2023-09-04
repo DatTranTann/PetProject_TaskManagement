@@ -1,36 +1,55 @@
 package PetProject.TaskManagement.entity;
-
 import jakarta.persistence.*;
-
+import lombok.Getter;
+import lombok.Setter;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
+@Getter @Setter
 @Table(name = "employee")
 public class Employee {
     @jakarta.persistence.Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private UUID Id;
+    private UUID id;
     @Column(name = "first_name")
-    private String FirstName;
+    private String firstName;
     @Column(name = "last_name")
-    private String LastName;
+    private String lastName;
     @Column(name = "user_name")
-    private String UserName;
+    private String userName;
     @Column(name = "display_name")
-    private String DisplayName;
+    private String displayName;
     @Column(name = "last_login_date")
-    private LocalDateTime LastLoginDate;
+    private LocalDateTime lastLoginDate;
     @Column(name = "is_deleted")
-    private String IsDeleted;
+    private boolean isDeleted;
     @Column(name = "created_date")
-    private LocalDateTime CreatedDate;
+    private LocalDateTime createdDate;
     @Column(name = "created_by")
-    private String CreatedBy;
+    private String createdBy;
     @Column(name = "updated_date")
-    private LocalDateTime UpdatedDate;
+    private LocalDateTime updatedDate;
     @Column(name = "updated_by")
-    private String UpdatedBy;
+    private String updatedBy;
 
     public Employee() {}
+//    public UUID getId() {
+//        return id;
+//    }
+//    public void setId(UUID id) {
+//        this.id = id;
+//    }
+//    public String getFirstName() {
+//        return firstName;
+//    }
+//    public void getFirstName(String firstName) {
+//        this.firstName = firstName;
+//    }
+//    public String getLastName() {
+//        return lastName;
+//    }
+//    public void setLastName(String lastName) {
+//        this.lastName = lastName;
+//    }
 }
