@@ -4,30 +4,36 @@ import PetProject.TaskManagement.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
 
-@Controller
+@RestController
+@RequestMapping("/employee")
+@CrossOrigin("http://localhost:8080")
 public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
-    @GetMapping("/ListEmployees")
-    public String getListEmployees(Model model) {
+    @GetMapping("/")
+    public List<Employee> getListEmployees(Model model) {
         List<Employee> listRoles = employeeService.getAllEmployees();
-        model.addAttribute("listRoles", listRoles);
-        return "listRoles";
+        return listRoles;
     }
-    @GetMapping("/employee")
-    public Employee getEmployeeById(UUID id) {
+    @GetMapping("/id/{id}")
+    public Employee getEmployeeById(@PathVariable("id") UUID id) {
         return employeeService.getEmployeeById(id);
     }
+    @GetMapping("/name/{name}")
+    public List<Employee> getEmployeeByUserName(@PathVariable("name") String name) {
+        return employeeService.getEmployeeByUserName(name);
+    }
+
+
+
+
     @PostMapping("/employee")
     public void CreateUpdateEmployee(Employee employee) {
-
     }
     @DeleteMapping("/employee")
     public String DeleteEmployee(UUID id)

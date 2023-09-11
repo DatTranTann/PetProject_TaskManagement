@@ -11,29 +11,46 @@ import java.util.UUID;
 public class Employee {
     @jakarta.persistence.Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private UUID id;
+    private UUID Id;
     @Column(name = "first_name")
-    private String firstName;
+    private String FirstName;
     @Column(name = "last_name")
-    private String lastName;
+    private String LastName;
     @Column(name = "user_name")
-    private String userName;
+    private String UserName;
+    @Column(name = "password")
+    private String Password;
     @Column(name = "display_name")
-    private String displayName;
+    private String DisplayName;
     @Column(name = "last_login_date")
-    private LocalDateTime lastLoginDate;
+    private LocalDateTime LastLoginDate;
     @Column(name = "is_deleted")
-    private boolean isDeleted;
+    private boolean IsDeleted;
     @Column(name = "created_date")
-    private LocalDateTime createdDate;
+    private LocalDateTime CreatedDate;
     @Column(name = "created_by")
-    private String createdBy;
+    private String CreatedBy;
     @Column(name = "updated_date")
-    private LocalDateTime updatedDate;
+    private LocalDateTime UpdatedDate;
     @Column(name = "updated_by")
-    private String updatedBy;
+    private String UpdatedBy;
 
     public Employee() {}
+    public Employee(UUID id, String firstName, String lastName, String userName, String password, String displayName, LocalDateTime lastLoginDate, boolean isDeleted, LocalDateTime createdDate, String createdBy, LocalDateTime updatedDate, String updatedBy)
+    {
+        this.Id = id;
+        this.FirstName = firstName;
+        this.LastName = lastName;
+        this.UserName = userName;
+        this.Password = password;
+        this.DisplayName = displayName;
+        this.LastLoginDate = lastLoginDate;
+        this.IsDeleted = isDeleted;
+        this.CreatedDate = createdDate;
+        this.CreatedBy = createdBy;
+        this.UpdatedDate = updatedDate;
+        this.UpdatedBy = updatedBy;
+    }
 //    public UUID getId() {
 //        return id;
 //    }

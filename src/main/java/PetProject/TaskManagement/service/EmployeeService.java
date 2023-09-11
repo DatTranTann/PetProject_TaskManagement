@@ -1,6 +1,7 @@
 package PetProject.TaskManagement.service;
 import PetProject.TaskManagement.Interface.ServiceInterface.EmployeeServiceInterface;
 import PetProject.TaskManagement.entity.Employee;
+import PetProject.TaskManagement.entity.Role;
 import PetProject.TaskManagement.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,10 @@ public class EmployeeService implements EmployeeServiceInterface {
     {
         return repo.findById(id).get();
     }
+    public List<Employee> getEmployeeByUserName(String userName) {
+        var employeeValue = repo.getListRoleByName(userName);
+        return employeeValue;
+    }
     public void create(Employee employee){
         repo.save(employee);
     }
@@ -35,15 +40,16 @@ public class EmployeeService implements EmployeeServiceInterface {
         }
     }
     public String delete(UUID id) {
-        var employee = repo.findById(id).get();
-        if (employee != null)
-        {
-            employee.setDeleted(true);
-            repo.save(employee);
-            return "Delete employee successfully";
-        }
-        else {
-            return "Cant Find Employee!!";
-        }
+//        var employee = repo.findById(id).get();
+//        if (employee != null)
+//        {
+//            employee.setDeleted(true);
+//            repo.save(employee);
+//            return "Delete employee successfully";
+//        }
+//        else {
+//            return "Cant Find Employee!!";
+//        }
+        return "";
     }
 }

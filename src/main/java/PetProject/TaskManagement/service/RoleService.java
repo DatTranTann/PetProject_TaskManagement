@@ -1,9 +1,8 @@
 package PetProject.TaskManagement.service;
 import java.time.LocalDateTime;
 import java.time.Month;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
+
 import PetProject.TaskManagement.entity.Role;
 import PetProject.TaskManagement.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,14 @@ public class RoleService {
     private RoleRepository repo;
 
     public List<Role> getAll() {
-        return new ArrayList<>();
+        return repo.findAll();
+    }
+    public Optional<Role> getRoleById(UUID id) {
+        return repo.findById(id);
+    }
+    public List<Role> getRoleByName(String name) {
+        var roleValue = repo.getListRoleByName(name);
+        return roleValue;
     }
 
     public void save() {
