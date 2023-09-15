@@ -1,49 +1,48 @@
 package PetProject.TaskManagement.entity;
+
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.util.Collection;
 import java.util.UUID;
+
 @Entity
-@Getter @Setter
-@Table(name = "role")
-public class Role {
-    @Id
+@Getter
+@Setter
+@Data
+@Table(name = "employee_role_mapping")
+public class EmployeRoleMapping {
+    @jakarta.persistence.Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private UUID Id;
-    @Column(name = "role_name")
-    private String RoleName;
+
     @Column(name = "is_deleted")
     private boolean IsDeleted;
     @Column(name = "created_date")
     private LocalDateTime CreatedDate;
     @Column(name = "created_by")
-    private UUID  CreatedBy;
+    private UUID CreatedBy;
     @Column(name = "updated_date")
     private LocalDateTime UpdatedDate;
     @Column(name = "updated_by")
-    private UUID  UpdatedBy;
-    @OneToMany(mappedBy="role")
-    private Collection<EmployeRoleMapping> employeRoleMappings;
-    public Role() {}
-    public Role(UUID id, String roleName, boolean isDeleted, LocalDateTime createdDate, UUID createdBy, LocalDateTime updatedDate, UUID updatedBy)
+    private UUID UpdatedBy;
+    @ManyToOne
+    @JoinColumn(name = "role_id") // thông qua khóa ngoại role_id
+    private Role role;
+
+    @ManyToOne
+    @JoinColumn(name = "employee_id") // thông qua khóa ngoại employee_id
+    private Employee employee;
+    public EmployeRoleMapping() {}
+    public EmployeRoleMapping(UUID id, boolean isDeleted, LocalDateTime createdDate, UUID createdBy, LocalDateTime updatedDate, UUID updatedBy)
     {
         this.Id = id;
-        this.RoleName = roleName;
         this.IsDeleted = isDeleted;
         this.CreatedDate = createdDate;
         this.CreatedBy = createdBy;
         this.UpdatedDate = updatedDate;
         this.UpdatedBy = updatedBy;
     }
-//    public UUID getId() {
-//        return Id;
-//    }
-//
-//    public String getRoleName() {
-//        return RoleName;
-//    }
 }
-

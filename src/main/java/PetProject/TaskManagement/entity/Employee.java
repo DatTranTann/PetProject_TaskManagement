@@ -3,7 +3,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import java.time.LocalDateTime;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 @Getter @Setter
@@ -34,6 +34,9 @@ public class Employee {
     private LocalDateTime UpdatedDate;
     @Column(name = "updated_by")
     private String UpdatedBy;
+
+    @OneToMany(mappedBy="employee")
+    private Collection<EmployeRoleMapping> employeRoleMappings;
 
     public Employee() {}
     public Employee(UUID id, String firstName, String lastName, String userName, String password, String displayName, LocalDateTime lastLoginDate, boolean isDeleted, LocalDateTime createdDate, String createdBy, LocalDateTime updatedDate, String updatedBy)
