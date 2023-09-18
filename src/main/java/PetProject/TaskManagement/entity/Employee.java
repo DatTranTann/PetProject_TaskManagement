@@ -2,13 +2,18 @@ package PetProject.TaskManagement.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+
 import java.time.LocalDateTime;
 import java.util.*;
 
 @Entity
 @Getter @Setter
 @Table(name = "employee")
-public class Employee {
+public class Employee implements UserDetails {
     @jakarta.persistence.Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private UUID Id;
@@ -22,6 +27,8 @@ public class Employee {
     private String Password;
     @Column(name = "display_name")
     private String DisplayName;
+    @Column(name = "email")
+    private String Email;
     @Column(name = "last_login_date")
     private LocalDateTime LastLoginDate;
     @Column(name = "is_deleted")
@@ -36,10 +43,11 @@ public class Employee {
     private String UpdatedBy;
 
     @OneToMany(mappedBy="employee")
-    private Collection<EmployeRoleMapping> employeRoleMappings;
+//    private Collection<EmployeRoleMapping> employeRoleMappings;
+    private Set<EmployeRoleMapping>employeRoleMappings;
 
     public Employee() {}
-    public Employee(UUID id, String firstName, String lastName, String userName, String password, String displayName, LocalDateTime lastLoginDate, boolean isDeleted, LocalDateTime createdDate, String createdBy, LocalDateTime updatedDate, String updatedBy)
+    public Employee(UUID id, String firstName, String lastName, String userName, String password, String displayName, String Email, LocalDateTime lastLoginDate, boolean isDeleted, LocalDateTime createdDate, String createdBy, LocalDateTime updatedDate, String updatedBy)
     {
         this.Id = id;
         this.FirstName = firstName;
@@ -47,12 +55,50 @@ public class Employee {
         this.UserName = userName;
         this.Password = password;
         this.DisplayName = displayName;
+        this.Email = Email;
         this.LastLoginDate = lastLoginDate;
         this.IsDeleted = isDeleted;
         this.CreatedDate = createdDate;
         this.CreatedBy = createdBy;
         this.UpdatedDate = updatedDate;
         this.UpdatedBy = updatedBy;
+    }
+
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        employeRoleMappings.stream().forEach(i -> authorities.add(new SimpleGrantedAuthority(i.getRole().getRoleName())));
+        return List.of(new SimpleGrantedAuthority(authorities.toString()));
+    }
+
+    @Override
+    public String getUsername() {
+        return Email;
+    }
+    @Override
+    public String getPassword() {
+        return Password;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 //    public UUID getId() {
 //        return id;

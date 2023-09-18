@@ -20,13 +20,6 @@ public class EmployeRoleMappingService {
     private EmployeRoleMappingRepository repo;
     public List<Object> getAll() {
         var result = repo.getAllEmployeRoleMapping();
-
-//        List<EmployeRoleMapping> test = new ArrayList<EmployeRoleMapping>();
-//        for (int i = 0;i < result.size(); i++) {
-//            EmployeRoleMapping employeRoleMapping = new EmployeRoleMapping();
-//            employeRoleMapping.setId((UUID) result.get(i));
-//            employeRoleMapping.setEmployee(); result.get(i));
-//        }
         return result;
     }
     public Optional<EmployeRoleMapping> getRoleById(UUID id) {

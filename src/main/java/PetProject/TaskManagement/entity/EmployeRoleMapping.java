@@ -23,11 +23,11 @@ public class EmployeRoleMapping {
     @Column(name = "created_date")
     private LocalDateTime CreatedDate;
     @Column(name = "created_by")
-    private UUID CreatedBy;
+    private String CreatedBy;
     @Column(name = "updated_date")
     private LocalDateTime UpdatedDate;
     @Column(name = "updated_by")
-    private UUID UpdatedBy;
+    private String UpdatedBy;
     @ManyToOne
     @JoinColumn(name = "role_id") // thông qua khóa ngoại role_id
     private Role role;
@@ -36,7 +36,7 @@ public class EmployeRoleMapping {
     @JoinColumn(name = "employee_id") // thông qua khóa ngoại employee_id
     private Employee employee;
     public EmployeRoleMapping() {}
-    public EmployeRoleMapping(UUID id, boolean isDeleted, LocalDateTime createdDate, UUID createdBy, LocalDateTime updatedDate, UUID updatedBy)
+    public EmployeRoleMapping(UUID id, boolean isDeleted, LocalDateTime createdDate, String createdBy, LocalDateTime updatedDate, String updatedBy)
     {
         this.Id = id;
         this.IsDeleted = isDeleted;

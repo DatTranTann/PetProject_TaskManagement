@@ -38,6 +38,10 @@ public class Role {
         this.UpdatedDate = updatedDate;
         this.UpdatedBy = updatedBy;
     }
+    public Role(String roleName)
+    {
+        this.RoleName = roleName;
+    }
 //    public UUID getId() {
 //        return Id;
 //    }

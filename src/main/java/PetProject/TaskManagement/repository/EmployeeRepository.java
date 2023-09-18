@@ -7,10 +7,14 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, UUID> {
     @Query(value = "select * from employee where lower(user_name) like ?1%", nativeQuery = true)
     List<Employee> getListRoleByName(@Param("userName") String userName);
+    @Query(value = "select * from employee where lower(email) like ?1%", nativeQuery = true)
+    Optional<Employee> findByEmail(@Param("userName") String email);
+//    Optional<Employee> findByEmail(String email);
 }

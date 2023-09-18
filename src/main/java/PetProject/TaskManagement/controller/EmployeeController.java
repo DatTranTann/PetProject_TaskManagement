@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -34,6 +35,8 @@ public class EmployeeController {
 
     @PostMapping("/employee")
     public void CreateUpdateEmployee(Employee employee) {
+        var newEmployee = new Employee(UUID.randomUUID(),"Dat","Tran","DatTran","dat12345", "Tran Tan Dat", "trandat123@gmail.com", LocalDateTime.now(), false, LocalDateTime.now(), "00000000-0000-0000-0000-000000000000", LocalDateTime.now(), "00000000-0000-0000-0000-000000000000");
+        employeeService.create(newEmployee);
     }
     @DeleteMapping("/employee")
     public String DeleteEmployee(UUID id)
